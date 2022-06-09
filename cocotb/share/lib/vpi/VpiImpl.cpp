@@ -26,6 +26,8 @@
 ******************************************************************************/
 
 #include "VpiImpl.h"
+#include "vpi_bfm_api.h"
+#include <cocotb_utils.h>  // COCOTB_UNUSED
 
 extern "C" {
 
@@ -692,6 +694,8 @@ void (*vlog_startup_routines[])() = {
     register_system_functions,
     register_initial_callback,
     register_final_callback,
+    register_bfm_tf,
+
     0
 };
 
