@@ -111,21 +111,22 @@ def write_and_read(dut):
     yield Timer(CLK_PERIOD_NS * 10, units='ns')
     dut.rst <= 0
 
-    ADDRESS = 0x00
-    DATA = 0xAB
+    for i in range(10000):
+        ADDRESS = 0x00
+        DATA = 0xAB
 
-    # Write to the register
-    yield axim.write(ADDRESS, DATA)
-    yield Timer(CLK_PERIOD_NS * 10, units='ns')
+        # Write to the register
+        yield axim.write(ADDRESS, DATA)
+        yield Timer(CLK_PERIOD_NS , units='ns')
 
-    # Read back the value
-    value = yield axim.read(ADDRESS)
-    yield Timer(CLK_PERIOD_NS * 10, units='ns')
+        # Read back the value
+        value = yield axim.read(ADDRESS)
+        yield Timer(CLK_PERIOD_NS , units='ns')
 
-    value = dut.dut.r_temp_0
-    if value != DATA:
-        # Fail
-        raise TestFailure("Register at address 0x%08X should have been: \
+        value = dut.dut.r_temp_0
+        if value != DATA:
+            # Fail
+            raise TestFailure("Register at address 0x%08X should have been: \
                            0x%08X but was 0x%08X" % (ADDRESS, DATA, int(value)))
 
     dut._log.info("Write 0x%08X to address 0x%08X" % (int(value), ADDRESS))

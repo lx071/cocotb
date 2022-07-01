@@ -37,7 +37,6 @@ LIB_NAME    := libgpi
 
 SRCS        := GpiCbHdl.cpp GpiCommon.cpp GpiBfm.cpp GpiBfmMsg.cpp \
                cocotb_bfm_api.cpp
-
 all: $(LIB_DIR)/$(LIB_NAME).$(LIB_EXT)
 
 clean:

@@ -129,10 +129,10 @@ class RegressionManager(object):
             # user doesn't need to directly-access signals
             if cocotb.SIM_NAME == "Verilator":
                 self.log.info("Can not find Root Handle (%s). Design hierarchy will not be accessible" %
-                              self._root_name)
+                      self._root_name)
             else:
                 raise AttributeError("Can not find Root Handle (%s)" %
-                                     self._root_name)
+                                self._root_name)
 
         # Auto discovery
         for module_name in self._modules:

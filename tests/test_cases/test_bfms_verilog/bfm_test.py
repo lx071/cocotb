@@ -1,6 +1,13 @@
+# Copyright cocotb contributors
+# Licensed under the Revised BSD License, see LICENSE for details.
+# SPDX-License-Identifier: BSD-3-Clause
+print('==============import cocotb================')
 import cocotb
+print('==============import Timer================')
 from cocotb.triggers import Timer
+print('==============import rv_bfms================')
 from rv_bfms import *
+print('==============import finished================')
 
 class BfmTest(ReadyValidDataMonitorIF):
 
@@ -28,6 +35,10 @@ class BfmTest(ReadyValidDataMonitorIF):
 
 @cocotb.test()
 def runtest(dut):
-  test = BfmTest()
-  yield test.run()
+    # print('========test create======')
+    test = BfmTest()
+    # print('========test run======')
+    yield test.run()
+    # print('========test end======')
+
 

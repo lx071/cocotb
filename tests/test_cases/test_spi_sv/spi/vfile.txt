@@ -1,0 +1,2 @@
+./spi_initiator_smoke_tb.sv \
+./SPI_Slave.v

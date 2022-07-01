@@ -58,7 +58,6 @@ module SPI_Slave(
  				mem <= mem + 1;
  			end
  		end
-
  	end
+ endmodule
 
-endmodule

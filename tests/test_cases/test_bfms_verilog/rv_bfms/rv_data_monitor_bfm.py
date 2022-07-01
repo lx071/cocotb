@@ -2,7 +2,7 @@ import cocotb
 from cocotb.drivers import Driver
 from cocotb.triggers import RisingEdge, ReadOnly, Lock, Event
 
-
+print('==========rv_data_monitor_bfm============')
 @cocotb.bfm(hdl={
     cocotb.bfm_vlog : cocotb.bfm_hdl_path(__file__, "hdl/rv_data_monitor_bfm.v"),
     cocotb.bfm_sv   : cocotb.bfm_hdl_path(__file__, "hdl/rv_data_monitor_bfm.v")

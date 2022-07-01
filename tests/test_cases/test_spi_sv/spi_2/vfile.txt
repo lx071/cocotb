@@ -1,0 +1,2 @@
+./spi_initiator_smoke_tb.sv \
+./spi_initiator_bfm.v

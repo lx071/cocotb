@@ -1,3 +1,8 @@
+/******************************************************************************
+ * Copyright cocotb contributors
+ * Licensed under the Revised BSD License, see LICENSE for details.
+ * SPDX-License-Identifier: BSD-3-Clause
+ ******************************************************************************/
 #ifndef INCLUDED_GPI_BFM_MSG_H
 #define INCLUDED_GPI_BFM_MSG_H
 #include <vector>

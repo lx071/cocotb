@@ -29,6 +29,7 @@
 #include "vpi_bfm_api.h"
 #include <cocotb_utils.h>  // COCOTB_UNUSED
 
+
 extern "C" {
 
 static VpiCbHdl *sim_init_cb;
@@ -695,7 +696,6 @@ void (*vlog_startup_routines[])() = {
     register_initial_callback,
     register_final_callback,
     register_bfm_tf,
-
     0
 };
 

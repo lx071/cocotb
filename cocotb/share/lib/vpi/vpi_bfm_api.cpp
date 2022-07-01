@@ -1,3 +1,9 @@
+/******************************************************************************
+ * Copyright cocotb contributors
+ * Licensed under the Revised BSD License, see LICENSE for details.
+ * SPDX-License-Identifier: BSD-3-Clause
+ ******************************************************************************/
+
 #include "vpi_bfm_api.h"
 #include <stdint.h>
 #include "vpi_user.h"

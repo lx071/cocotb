@@ -1,3 +1,9 @@
+###############################################################################
+# Copyright cocotb contributors
+# Licensed under the Revised BSD License, see LICENSE for details.
+# SPDX-License-Identifier: BSD-3-Clause
+###############################################################################
+
 TOPLEVEL_LANG ?= verilog
 COCOTB_BFM_MODULES += rv_bfms
 

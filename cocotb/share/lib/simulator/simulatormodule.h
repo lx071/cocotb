@@ -89,13 +89,19 @@ static PyObject *get_sim_time(PyObject *self, PyObject *args);
 static PyObject *get_precision(PyObject *self, PyObject *args);
 static PyObject *deregister_callback(PyObject *self, PyObject *args);
 
+// 所有Python对象都能用PyObject*来表示
 static PyObject *bfm_get_count(PyObject *self, PyObject *args);
 static PyObject *bfm_get_info(PyObject *self, PyObject *args);
 static PyObject *bfm_send_msg(PyObject *self, PyObject *args);
 static PyObject *bfm_set_call_method(PyObject *self, PyObject *args);
 
+
 static PyObject *log_level(PyObject *self, PyObject *args);
 
+// 使用 PyMethodDef定义需要导出的函数
+// 格式: {"func_name", func, func_feature_flags, "function docstring"}
+// METH_VARARGS: 只使用占位参数，比如f(a,b)，用来做占位，调用函数时必须填补该位置
+// METH_NOARGS:没有参数，比如f()
 static PyMethodDef SimulatorMethods[] = {
     {"log_msg", log_msg, METH_VARARGS, "Log a message"},
     {"get_signal_val_long", get_signal_val_long, METH_VARARGS, "Get the value of a signal as a long"},
@@ -134,17 +140,22 @@ static PyMethodDef SimulatorMethods[] = {
     {"error_out", (PyCFunction)error_out, METH_NOARGS, NULL},
 
     // Note: methods for interacting with BFMs
+    // 注册到Cocotb的BFM数量
     {"bfm_get_count", bfm_get_count, METH_VARARGS, NULL},
 
 	// - (typename,instname,clsname) of BFM
+	// 返回特定BFM的信息,包括实例名和类名
     {"bfm_get_info", bfm_get_info, METH_VARARGS, NULL},
 
     // - Send a message to a BFM
+    // 发送消息给特定BFM
     {"bfm_send_msg", bfm_send_msg, METH_VARARGS, NULL},
 
 	// - Sets the call-method function
+	// 接收信息，返回到Python端
     {"bfm_set_call_method", bfm_set_call_method, METH_VARARGS, NULL},
-    
+
+    // 结束标志
     {NULL, NULL, 0, NULL}        /* Sentinel */
 };
 

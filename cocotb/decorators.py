@@ -62,6 +62,7 @@ def public(f):
         all.append(f.__name__)
     return f
 
+
 public(public)  # Emulate decorating ourself
 
 
@@ -484,30 +485,32 @@ class test(_py_compat.with_metaclass(_decorator_helper, coroutine)):
 
 
 @public
-class bfm():
+class bfm:
     '''
     Decorator to identify a BFM type.
     '''
-
     def __init__(self, hdl):
+        print('@cocotb.bfm(hdl=\t', hdl)
         self.hdl = hdl
 
     def __call__(self, T):
+        # 注册bfm
         cocotb.bfms.register_bfm_type(T, self.hdl)
         return T
-
 
 @public
 class bfm_export():
 
     def __init__(self, *args):
+        print('@cocotb.bfm_export_init')
         self.signature = args
 
     def __call__(self, m):
+        print('@cocotb.bfm_export_call')
+        # 将被装饰的方法放进全局列表export_info_l中
         cocotb.bfms.register_bfm_export_info(
             cocotb.bfms.BfmMethodInfo(m, self.signature))
         return m
-
 
 @public
 class bfm_import():
@@ -516,10 +519,13 @@ class bfm_import():
     '''
 
     def __init__(self, *args):
+        print('@cocotb.bfm_import_init')
         self.signature = args
 
     def __call__(self, m):
+        print('@cocotb.bfm_import_call')
         info = cocotb.bfms.BfmMethodInfo(m, self.signature)
+        # 将被装饰的方法放进全局列表import_info_l中
         cocotb.bfms.register_bfm_import_info(info)
 
         def import_taskw(self, *args):
@@ -527,7 +533,7 @@ class bfm_import():
             arg_l = []
             for a in args:
                 arg_l.append(a)
-
+            
             simulator.bfm_send_msg(
                 self.bfm_info.id,
                 info.id,
@@ -536,13 +542,13 @@ class bfm_import():
 
         return import_taskw
 
-
 class bfm_param_int_t():
+
     sv_type_m = {
-        8: "byte",
-        16: "short",
-        32: "int",
-        64: "longint"
+        8 : "byte",
+        16 : "short",
+        32 : "int",
+        64 : "longint"
     }
 
     def __init__(self, w, s):
@@ -557,7 +563,7 @@ class bfm_param_int_t():
             return ret
         else:
             raise Exception("parameter-width \"" + str(self.w) + "\" not supported by SystemVerilog")
-
+    
     def vl_type(self):
         ret = "reg"
         if self.s:
@@ -565,7 +571,6 @@ class bfm_param_int_t():
         ret += "[" + str(self.w) + "-1:0]"
 
         return ret
-
 
 # Constants for use in specifying BFM API signatures
 bfm_int8_t = bfm_param_int_t(8, True)

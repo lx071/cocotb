@@ -476,12 +476,12 @@ int VpiStartupCbHdl::run_callback() {
     	gpi_embed_init(&sim_info);
     }
 
-//    sim_info.argc = info.argc;
-//    sim_info.argv = info.argv;
-//    sim_info.product = info.product;
-//    sim_info.version = info.version;
-//
-//    gpi_embed_init(&sim_info);
+    // sim_info.argc = info.argc;
+    // sim_info.argv = info.argv;
+    // sim_info.product = info.product;
+    // sim_info.version = info.version;
+
+    // gpi_embed_init(&sim_info);
 
     return 0;
 }

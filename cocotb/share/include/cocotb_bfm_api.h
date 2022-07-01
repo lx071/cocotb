@@ -1,3 +1,8 @@
+/******************************************************************************
+ * Copyright cocotb contributors
+ * Licensed under the Revised BSD License, see LICENSE for details.
+ * SPDX-License-Identifier: BSD-3-Clause
+ ******************************************************************************/
 #ifndef INCLUDED_COCOTB_BFM_API_H
 #define INCLUDED_COCOTB_BFM_API_H
 #include <stdint.h>

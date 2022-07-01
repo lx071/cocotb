@@ -1,3 +1,8 @@
+/******************************************************************************
+ * Copyright cocotb contributors
+ * Licensed under the Revised BSD License, see LICENSE for details.
+ * SPDX-License-Identifier: BSD-3-Clause
+ ******************************************************************************/
 #ifndef INCLUDED_GPI_BFM_H
 #define INCLUDED_GPI_BFM_H
 #include <stdint.h>
@@ -5,6 +10,8 @@
 #include <vector>
 #include "cocotb_bfm_api.h"
 #include "GpiBfmMsg.h"
+
+
 
 
 class GpiBfm {

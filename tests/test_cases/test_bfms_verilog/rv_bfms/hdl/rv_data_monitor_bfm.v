@@ -1,3 +1,14 @@
+/****************************************************************************
+ * Copyright cocotb contributors
+ * Licensed under the Revised BSD License, see LICENSE for details.
+ * SPDX-License-Identifier: BSD-3-Clause
+ ****************************************************************************/
+
+/**
+ * Module: rv_data_monitor_bfm
+ *
+ * TODO: Add module documentation
+ */
 module rv_data_monitor_bfm #(
 		parameter DATA_WIDTH = 8
 		) (

@@ -34,6 +34,7 @@ ifeq (,$(MODELSIM_BIN_DIR))
   MODELSIM_BIN_DIR := $(dir $(shell which vsim))
 endif
 
+
 INCLUDES    += -I$(MODELSIM_BIN_DIR)/../include
 GXX_ARGS    += -DFLI_CHECKING -DUSE_CACHE
 LIBS        := $(EXTRA_LIBS) -lgpilog -lgpi -lstdc++

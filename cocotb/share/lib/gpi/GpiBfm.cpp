@@ -1,3 +1,8 @@
+/******************************************************************************
+ * Copyright cocotb contributors
+ * Licensed under the Revised BSD License, see LICENSE for details.
+ * SPDX-License-Identifier: BSD-3-Clause
+ ******************************************************************************/
 #include "GpiBfm.h"
 #include <stdio.h>
 
@@ -24,7 +29,7 @@ GpiBfm::~GpiBfm() {
     }
 }
 
-int32_t GpiBfm::add_bfm(GpiBfm *bfm) {
+uint32_t GpiBfm::add_bfm(GpiBfm *bfm) {
     bfm->m_bfm_id = static_cast<uint32_t>(m_bfm_l.size());
 
     m_bfm_l.push_back(bfm);
