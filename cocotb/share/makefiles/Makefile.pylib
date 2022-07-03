@@ -35,6 +35,7 @@ ARCH?=$(NATIVE_ARCH)
 include $(COCOTB_SHARE_DIR)/makefiles/Makefile.pylib.$(OS)
 
 export LD_LIBRARY_PATH := $(LD_LIBRARY_PATH):$(PYTHON_LIBDIR)
+# LD_LIBRARY_PATH := :/usr/lib
 
 #debug::
 #	@echo "Debug from Makefile.pylib"

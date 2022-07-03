@@ -29,6 +29,8 @@
 
 ifneq ($(VHDL_SOURCES),)
 
+# $(info COCOTB_RESULTS_FILE := $(COCOTB_RESULTS_FILE))
+
 $(COCOTB_RESULTS_FILE):
 	@echo "Skipping simulation as VHDL is not supported on simulator=$(SIM)"
 debug: $(COCOTB_RESULTS_FILE)
@@ -45,12 +47,16 @@ else
     CMD := $(shell :; command -v $(CMD_BIN) 2>/dev/null)
 endif
 
+# CMD := /usr/bin/iverilog
+
 ifeq (, $(CMD))
     $(error "Unable to locate command >$(CMD_BIN)<")
 else
 	ICARUS_BIN_DIR := $(shell dirname $(CMD))
     export ICARUS_BIN_DIR
 endif
+
+# ICARUS_BIN_DIR := /usr/bin
 
 BUILD_VPI=1
 
@@ -60,6 +66,12 @@ COMPILE_ARGS += -g2012 # Default to latest SystemVerilog standard
 $(SIM_BUILD)/sim.vvp: $(SIM_BUILD) $(VERILOG_SOURCES) $(COCOTB_BFM_SOURCES) $(CUSTOM_COMPILE_DEPS)
 	$(CMD) -o $(SIM_BUILD)/sim.vvp -D COCOTB_SIM=1 -s $(TOPLEVEL) $(COMPILE_ARGS) $(EXTRA_ARGS) $(COCOTB_BFM_SOURCES) $(VERILOG_SOURCES)
 
+# -o选项指定输出文件的名称; -D: 定义宏; -s topmodule : 指定要建立的顶层模块
+# -g2012: 选择支持的verilog语言版本
+# /usr/bin/iverilog -o sim_build/sim.vvp -D COCOTB_SIM=1 -s spi_initiator_smoke_tb -g2012   sim_build/cocotb_bfms.v /home/lx/cocotb/tests/test_cases/test_spi_bfm/../../../tests/designs/spi_bfm/spi_initiator_smoke_tb.sv
+# 输出一个类似汇编的vvp文件
+
+# SIM_BUILD := sim_build
 
 # Execution phase
 
@@ -77,10 +89,22 @@ LIB_LOAD := LD_LIBRARY_PATH=$(LIB_DIR):$(LD_LIBRARY_PATH)
 NEW_PYTHONPATH := $(PYTHONPATH)
 endif
 
+# COCOTB_RESULTS_FILE := results.xml
+
 $(COCOTB_RESULTS_FILE): $(SIM_BUILD)/sim.vvp $(CUSTOM_SIM_DEPS) $(COCOTB_LIBS) $(COCOTB_VPI_LIB)
 	PYTHONPATH=$(LIB_DIR):$(PWD):$(NEW_PYTHONPATH) $(LIB_LOAD) MODULE=$(MODULE) \
         TESTCASE=$(TESTCASE) TOPLEVEL=$(TOPLEVEL) TOPLEVEL_LANG=$(TOPLEVEL_LANG) COCOTB_SIM=1 \
         $(ICARUS_BIN_DIR)/vvp -M $(LIB_DIR) -m gpivpi $(SIM_BUILD)/sim.vvp $(SIM_ARGS) $(EXTRA_ARGS) $(PLUSARGS)
+
+# PYTHONPATH=/home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64:/home/lx/cocotb/tests/test_cases/test_spi_bfm:/home/lx/cocotb: LD_LIBRARY_PATH=/home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64::/usr/lib:/usr/lib:/usr/lib:/usr/lib MODULE=bfm_test \
+#         TESTCASE= TOPLEVEL=spi_initiator_smoke_tb TOPLEVEL_LANG=verilog COCOTB_SIM=1 \
+#         /usr/bin/vvp -M /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64 -m gpivpi sim_build/sim.vvp
+
+# 仿真时读入vvp文件，送进vvp虚拟机执行
+# -M path: 将path加入定位VPI模块的路径
+# -m module: 告诉vvp在执行simulation之前加载指定的module
+
+# $(info PYTHONPATH := $(PYTHONPATH))
 
 debug: $(SIM_BUILD)/sim.vvp $(CUSTOM_SIM_DEPS) $(COCOTB_LIBS)
 	PYTHONPATH=$(LIB_DIR):$(PWD):$(NEW_PYTHONPATH) $(LIB_LOAD) MODULE=$(MODULE) \

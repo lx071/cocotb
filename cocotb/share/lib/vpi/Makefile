@@ -56,6 +56,9 @@ $(LIB_DIR)/gpivpi.vpl: $(LIB_DIR)/$(LIB_NAME).$(LIB_EXT)
 $(LIB_DIR)/cocotb.vpi: $(LIB_DIR)/$(LIB_NAME).$(LIB_EXT)
 	ln -sf $(LIB_NAME).$(LIB_EXT) $@
 
+# ln -sf libvpi.so /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/gpivpi.vpl
+# ln -sf libvpi.so /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/cocotb.vpi
+
 clean:
 	-@rm -rf $(LIB_DIR)/$(LIB_NAME).$(LIB_EXT)
 	-@rm -rf $(LIB_DIR)/gpivpi.vpl

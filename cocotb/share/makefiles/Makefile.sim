@@ -44,9 +44,13 @@ COCOTB_HDL_TIMEPRECISION ?= 1ps
 
 # Maintain backwards compatibility by supporting upper and lower case SIM variable
 SIM_LOWERCASE := $(shell echo $(SIM) | tr A-Z a-z)
+# SIM_LOWERCASE := icarus
 
 HAVE_SIMULATOR = $(shell if [ -f $(COCOTB_SHARE_DIR)/makefiles/simulators/Makefile.$(SIM_LOWERCASE) ]; then echo 1; else echo 0; fi;)
 AVAILABLE_SIMULATORS = $(patsubst .%,%,$(suffix $(wildcard $(COCOTB_SHARE_DIR)/makefiles/simulators/Makefile.*)))
+
+# HAVE_SIMULATOR := 1
+# AVAILABLE_SIMULATORS := cvc modelsim vcs ius xcelium aldec nvc icarus ghdl verilator questa
 
 ifeq ($(HAVE_SIMULATOR),0)
 $(error "Couldn't find makefile for simulator: "$(SIM_LOWERCASE)"! Available simulators: $(AVAILABLE_SIMULATORS)")
@@ -64,6 +68,7 @@ include $(COCOTB_SHARE_DIR)/makefiles/simulators/Makefile.$(SIM_LOWERCASE)
 # Python search path.
 PYTHONPATH := $(COCOTB_PY_DIR):$(PYTHONPATH)
 export PYTHONPATH
+# PYTHONPATH := /home/lx/cocotb:
 
 $(SIM_BUILD):
 	mkdir -p $@
@@ -78,8 +83,12 @@ regression: $(COCOTB_RESULTS_FILE)
 sim:
 	-@rm -f $(COCOTB_RESULTS_FILE)
 	$(MAKE) $(COCOTB_RESULTS_FILE)
+# make results.xml
 
 .PHONY: cocotb_bfms.v
 $(SIM_BUILD)/cocotb_bfms.v:
 	$(PYTHON_BIN) -m cocotb.bfmgen generate --language vlog \
 		$(foreach m,$(COCOTB_BFM_MODULES),-m $(m)) -o $@
+
+# python -m cocotb.bfmgen generate --language vlog \
+# 	-m spi_bfms -o sim_build/cocotb_bfms.v

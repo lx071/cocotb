@@ -15,7 +15,7 @@ export_info_l = []
 
 # 用于注册bfm
 def register_bfm_type(T, hdl):
-    print('register_bfm_type')
+    # print('register_bfm_type')
     global import_info_l
     global export_info_l
     # BfmTypeInfo：里面包含了T——具体的BFM类，hdl——HDL文件和路径，import_info——需要被导入的方法列表，export_info——需要被导出的方法列表
@@ -28,14 +28,14 @@ def register_bfm_type(T, hdl):
 
 # 用于将被装饰的方法放进全局列表中，方法的id设为当前列表长度; info: BfmMethodInfo
 def register_bfm_import_info(info):
-    print('register_bfm_import_info')
+    # print('register_bfm_import_info')
     info.id = len(import_info_l)
     import_info_l.append(info)
 
 
 # 用于将被装饰的方法放进全局列表中，方法的id设为当前列表长度; info: BfmMethodInfo
 def register_bfm_export_info(info):
-    print('register_bfm_export_info')
+    # print('register_bfm_export_info')
     info.id = len(export_info_l)
     export_info_l.append(info)
 
@@ -138,7 +138,7 @@ class BfmMgr:
 
     # 给具体的bfm类添加对应的bfm类型信息
     def add_type_info(self, T, type_info):
-        print('add_type_info')
+        # print('add_type_info')
         self.bfm_type_info_m[T] = type_info
 
     @staticmethod
@@ -173,7 +173,7 @@ class BfmMgr:
 
     # 将verilog中注册的所有bfm都放进管理器       bfm_l列表
     def load_bfms(self):
-        print('load_bfms')
+        # print('load_bfms')
         '''
         Obtain the list of BFMs from the native layer
         '''

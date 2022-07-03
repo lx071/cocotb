@@ -41,27 +41,34 @@ $(LIB_DIR): $(LIB_OBJ_DIR)
 
 $(LIB_DIR)/libgpilog.$(LIB_EXT): $(COCOTB_SHARE_DIR)/lib/gpi_log/gpi_logging.c | $(LIB_DIR)
 	make -C $(COCOTB_SHARE_DIR)/lib/gpi_log SIM=$(SIM)
+# make -C /home/lx/cocotb/cocotb/share/lib/gpi_log SIM=icarus
 
 $(LIB_DIR)/libcocotb.$(LIB_EXT): $(COCOTB_SHARE_DIR)/lib/embed/gpi_embed.c | $(LIB_DIR)
 	make -C $(COCOTB_SHARE_DIR)/lib/embed SIM=$(SIM)
+# make -C /home/lx/cocotb/cocotb/share/lib/embed SIM=icarus
 
 $(LIB_DIR)/libvpi.$(LIB_EXT): $(COCOTB_SHARE_DIR)/lib/vpi/VpiImpl.cpp $(COCOTB_SHARE_DIR)/lib/vpi/VpiCbHdl.cpp | $(LIB_DIR)
 	make -C $(COCOTB_SHARE_DIR)/lib/vpi EXTRA_LIBS=$(EXTRA_LIBS) EXTRA_LIBDIRS=$(EXTRA_LIBDIRS) SIM=$(SIM)
+# make -C /home/lx/cocotb/cocotb/share/lib/vpi EXTRA_LIBS= EXTRA_LIBDIRS= SIM=icarus
+# 进入目录“/home/lx/cocotb/cocotb/share/lib/vpi”
 
 $(LIB_DIR)/libcocotbvhpi.$(LIB_EXT): $(COCOTB_SHARE_DIR)/lib/vhpi/VhpiImpl.cpp $(COCOTB_SHARE_DIR)/lib/vhpi/VhpiCbHdl.cpp | $(LIB_DIR)
 	make -C $(COCOTB_SHARE_DIR)/lib/vhpi EXTRA_LIBS=$(EXTRA_LIBS) EXTRA_LIBDIRS=$(EXTRA_LIBDIRS) SIM=$(SIM)
 
 $(LIB_DIR)/libgpi.$(LIB_EXT): $(COCOTB_SHARE_DIR)/lib/gpi/GpiCommon.cpp $(COCOTB_SHARE_DIR)/lib/gpi/GpiCbHdl.cpp | $(LIB_DIR)
 	make -C $(COCOTB_SHARE_DIR)/lib/gpi EXTRA_LIBS=$(EXTRA_LIBS) EXTRA_LIBDIRS=$(EXTRA_LIBDIRS) SIM=$(SIM)
+# make -C /home/lx/cocotb/cocotb/share/lib/gpi EXTRA_LIBS= EXTRA_LIBDIRS= SIM=icarus
 
 $(LIB_DIR)/libfli.$(LIB_EXT): $(COCOTB_SHARE_DIR)/lib/fli/FliImpl.cpp $(COCOTB_SHARE_DIR)/lib/fli/FliCbHdl.cpp $(COCOTB_SHARE_DIR)/lib/fli/FliObjHdl.cpp | $(LIB_DIR)
 	make -C $(COCOTB_SHARE_DIR)/lib/fli EXTRA_LIBS=$(EXTRA_LIBS) EXTRA_LIBDIRS=$(EXTRA_LIBDIRS) SIM=$(SIM)
 
 $(LIB_DIR)/libsim.$(LIB_EXT): $(COCOTB_SHARE_DIR)/lib/simulator/simulatormodule.c | $(LIB_DIR)
 	make -C $(COCOTB_SHARE_DIR)/lib/simulator SIM=$(SIM)
+# make -C /home/lx/cocotb/cocotb/share/lib/simulator SIM=icarus
 
 $(LIB_DIR)/libcocotbutils.$(LIB_EXT): $(COCOTB_SHARE_DIR)/lib/utils/cocotb_utils.c | $(LIB_DIR)
 	make -C $(COCOTB_SHARE_DIR)/lib/utils SIM=$(SIM)
+# make -C /home/lx/cocotb/cocotb/share/lib/utils SIM=icarus
 
 COCOTB_LIBS := $(LIB_DIR)/libcocotbutils.$(LIB_EXT) \
 	       $(LIB_DIR)/libgpilog.$(LIB_EXT) \
@@ -74,6 +81,11 @@ COCOTB_VPI_LIB := $(LIB_DIR)/libvpi.$(LIB_EXT)
 COCOTB_VHPI_LIB := $(LIB_DIR)/libcocotbvhpi.$(LIB_EXT)
 
 COCOTB_FLI_LIB := $(LIB_DIR)/libfli.$(LIB_EXT)
+
+# COCOTB_LIBS := /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/libcocotbutils.so /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/libgpilog.so /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/libcocotb.so /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/libgpi.so /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/libsim.so
+# COCOTB_VPI_LIB := /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/libvpi.so
+# COCOTB_VHPI_LIB := /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/libcocotbvhpi.so
+# COCOTB_FLI_LIB := /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/libfli.so
 
 clean::
 	-@rm -rf $(BUILD_DIR)

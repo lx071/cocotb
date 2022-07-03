@@ -1,0 +1,173 @@
+lx@vmware:~/cocotb/tests/test_cases/test_spi_bfm$ make
+
+### /home/lx/cocotb/cocotb/share/makefiles/Makefile.sim
+make results.xml
+make[1]: 进入目录“/home/lx/cocotb/tests/test_cases/test_spi_bfm”
+
+mkdir -p sim_build
+
+python -m cocotb.bfmgen generate --language vlog \
+	-m spi_bfms -o sim_build/cocotb_bfms.v
+
+### /home/lx/cocotb/cocotb/share/makefiles/simulators/Makefile.icarus	
+/usr/bin/iverilog -o sim_build/sim.vvp -D COCOTB_SIM=1 -s spi_initiator_smoke_tb -g2012   sim_build/cocotb_bfms.v /home/lx/cocotb/tests/test_cases/test_spi_bfm/../../../tests/designs/spi_bfm/spi_initiator_smoke_tb.sv
+
+### /home/lx/cocotb/cocotb/share/lib/Makefile
+mkdir -p /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64
+mkdir -p /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64
+
+make -C /home/lx/cocotb/cocotb/share/lib/utils SIM=icarus
+make[2]: 进入目录“/home/lx/cocotb/cocotb/share/lib/utils”
+gcc -Werror -Wcast-qual -Wcast-align -Wwrite-strings -Wall -Wno-unused-parameter -fno-common -g -DDEBUG -fpic -Wstrict-prototypes -Waggregate-return -DICARUS -c -I/home/lx/cocotb/cocotb/share/include -I/usr/include/python3.8  -o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/cocotb_utils.o cocotb_utils.c
+gcc -Werror -Wcast-qual -Wcast-align -Wwrite-strings -Wall -Wno-unused-parameter -fno-common -g -DDEBUG -fpic -Wstrict-prototypes -Waggregate-return -DICARUS -shared -Xlinker -L/usr/lib -o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/libcocotbutils.so /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/cocotb_utils.o    
+make[2]: 离开目录“/home/lx/cocotb/cocotb/share/lib/utils”
+
+make -C /home/lx/cocotb/cocotb/share/lib/gpi_log SIM=icarus
+make[2]: 进入目录“/home/lx/cocotb/cocotb/share/lib/gpi_log”
+gcc -Werror -Wcast-qual -Wcast-align -Wwrite-strings -Wall -Wno-unused-parameter -fno-common -g -DDEBUG -fpic -Wstrict-prototypes -Waggregate-return -DFILTER -DICARUS -c -I/home/lx/cocotb/cocotb/share/include -I/usr/include/python3.8  -o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/gpi_logging.o gpi_logging.c
+gcc -Werror -Wcast-qual -Wcast-align -Wwrite-strings -Wall -Wno-unused-parameter -fno-common -g -DDEBUG -fpic -Wstrict-prototypes -Waggregate-return -DFILTER -DICARUS -shared -Xlinker -L/usr/lib -o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/libgpilog.so /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/gpi_logging.o   -lpython3.8 
+make[2]: 离开目录“/home/lx/cocotb/cocotb/share/lib/gpi_log”
+
+make -C /home/lx/cocotb/cocotb/share/lib/embed SIM=icarus
+make[2]: 进入目录“/home/lx/cocotb/cocotb/share/lib/embed”
+gcc -Werror -Wcast-qual -Wcast-align -Wwrite-strings -Wall -Wno-unused-parameter -fno-common -g -DDEBUG -fpic -Wstrict-prototypes -Waggregate-return -DPYTHON_SO_LIB=libpython3.8.so -DICARUS -c -I/home/lx/cocotb/cocotb/share/include -I/usr/include/python3.8  -o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/gpi_embed.o gpi_embed.c
+gcc -Werror -Wcast-qual -Wcast-align -Wwrite-strings -Wall -Wno-unused-parameter -fno-common -g -DDEBUG -fpic -Wstrict-prototypes -Waggregate-return -DPYTHON_SO_LIB=libpython3.8.so -DICARUS -shared -Xlinker -L/usr/lib -o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/libcocotb.so /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/gpi_embed.o   -lpython3.8 -lgpilog -lcocotbutils -L/home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64
+make[2]: 离开目录“/home/lx/cocotb/cocotb/share/lib/embed”
+
+make -C /home/lx/cocotb/cocotb/share/lib/gpi EXTRA_LIBS= EXTRA_LIBDIRS= SIM=icarus
+make[2]: 进入目录“/home/lx/cocotb/cocotb/share/lib/gpi”
+g++ -Werror -Wcast-qual -Wcast-align -Wwrite-strings -Wall -Wno-unused-parameter -fno-common -g -DDEBUG -fpic -DVPI_CHECKING -DLIB_EXT=so -DSINGLETON_HANDLES -DICARUS -c -I/home/lx/cocotb/cocotb/share/include -I/usr/include/python3.8  -o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/GpiCbHdl.o GpiCbHdl.cpp
+g++ -Werror -Wcast-qual -Wcast-align -Wwrite-strings -Wall -Wno-unused-parameter -fno-common -g -DDEBUG -fpic -DVPI_CHECKING -DLIB_EXT=so -DSINGLETON_HANDLES -DICARUS -c -I/home/lx/cocotb/cocotb/share/include -I/usr/include/python3.8  -o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/GpiCommon.o GpiCommon.cpp
+g++ -Werror -Wcast-qual -Wcast-align -Wwrite-strings -Wall -Wno-unused-parameter -fno-common -g -DDEBUG -fpic -DVPI_CHECKING -DLIB_EXT=so -DSINGLETON_HANDLES -DICARUS -c -I/home/lx/cocotb/cocotb/share/include -I/usr/include/python3.8  -o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/GpiBfm.o GpiBfm.cpp
+g++ -Werror -Wcast-qual -Wcast-align -Wwrite-strings -Wall -Wno-unused-parameter -fno-common -g -DDEBUG -fpic -DVPI_CHECKING -DLIB_EXT=so -DSINGLETON_HANDLES -DICARUS -c -I/home/lx/cocotb/cocotb/share/include -I/usr/include/python3.8  -o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/GpiBfmMsg.o GpiBfmMsg.cpp
+g++ -Werror -Wcast-qual -Wcast-align -Wwrite-strings -Wall -Wno-unused-parameter -fno-common -g -DDEBUG -fpic -DVPI_CHECKING -DLIB_EXT=so -DSINGLETON_HANDLES -DICARUS -c -I/home/lx/cocotb/cocotb/share/include -I/usr/include/python3.8  -o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/cocotb_bfm_api.o cocotb_bfm_api.cpp
+gcc -Werror -Wcast-qual -Wcast-align -Wwrite-strings -Wall -Wno-unused-parameter -fno-common -g -DDEBUG -fpic -Wstrict-prototypes -Waggregate-return -DICARUS -shared -Xlinker -L/usr/lib -o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/libgpi.so  /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/GpiCbHdl.o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/GpiCommon.o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/GpiBfm.o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/GpiBfmMsg.o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/cocotb_bfm_api.o  -lcocotbutils -lgpilog -lcocotb -lstdc++ -L/home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64
+make[2]: 离开目录“/home/lx/cocotb/cocotb/share/lib/gpi”
+
+make -C /home/lx/cocotb/cocotb/share/lib/simulator SIM=icarus
+make[2]: 进入目录“/home/lx/cocotb/cocotb/share/lib/simulator”
+gcc -Werror -Wcast-qual -Wcast-align -Wwrite-strings -Wall -Wno-unused-parameter -fno-common -g -DDEBUG -fpic -Wstrict-prototypes -Waggregate-return  -DICARUS -c -I/home/lx/cocotb/cocotb/share/include -I/usr/include/python3.8  -o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/simulatormodule.o simulatormodule.c
+gcc -Werror -Wcast-qual -Wcast-align -Wwrite-strings -Wall -Wno-unused-parameter -fno-common -g -DDEBUG -fpic -Wstrict-prototypes -Waggregate-return  -DICARUS -shared -Xlinker -L/usr/lib -o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/libsim.so /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/simulatormodule.o   -lcocotbutils -lgpi -lgpilog -lpython3.8 -L/home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64
+ln -sf libsim.so /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/simulator.so
+make[2]: 离开目录“/home/lx/cocotb/cocotb/share/lib/simulator”
+
+make -C /home/lx/cocotb/cocotb/share/lib/vpi EXTRA_LIBS= EXTRA_LIBDIRS= SIM=icarus
+make[2]: 进入目录“/home/lx/cocotb/cocotb/share/lib/vpi”
+### /home/lx/cocotb/cocotb/share/makefiles/Makefile.rules
+g++ -Werror -Wcast-qual -Wcast-align -Wwrite-strings -Wall -Wno-unused-parameter -fno-common -g -DDEBUG -fpic -DVPI_CHECKING -DICARUS -c -I/home/lx/cocotb/cocotb/share/include -I/usr/include/python3.8  -o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/VpiImpl.o VpiImpl.cpp
+g++ -Werror -Wcast-qual -Wcast-align -Wwrite-strings -Wall -Wno-unused-parameter -fno-common -g -DDEBUG -fpic -DVPI_CHECKING -DICARUS -c -I/home/lx/cocotb/cocotb/share/include -I/usr/include/python3.8  -o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/VpiCbHdl.o VpiCbHdl.cpp
+g++ -Werror -Wcast-qual -Wcast-align -Wwrite-strings -Wall -Wno-unused-parameter -fno-common -g -DDEBUG -fpic -DVPI_CHECKING -DICARUS -c -I/home/lx/cocotb/cocotb/share/include -I/usr/include/python3.8  -o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/vpi_bfm_api.o vpi_bfm_api.cpp
+gcc -Werror -Wcast-qual -Wcast-align -Wwrite-strings -Wall -Wno-unused-parameter -fno-common -g -DDEBUG -fpic -Wstrict-prototypes -Waggregate-return -DICARUS -shared -Xlinker -L/usr/lib -o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/libvpi.so  /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/VpiImpl.o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/VpiCbHdl.o /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64/vpi_bfm_api.o   -lgpilog -lgpi -lstdc++  -L/home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64
+### /home/lx/cocotb/cocotb/share/lib/vpi/Makefile
+ln -sf libvpi.so /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/gpivpi.vpl
+ln -sf libvpi.so /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64/cocotb.vpi
+make[2]: 离开目录“/home/lx/cocotb/cocotb/share/lib/vpi”
+
+### /home/lx/cocotb/cocotb/share/makefiles/simulators/Makefile.icarus
+PYTHONPATH=/home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64:/home/lx/cocotb/tests/test_cases/test_spi_bfm:/home/lx/cocotb: LD_LIBRARY_PATH=/home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64::/usr/lib:/usr/lib:/usr/lib:/usr/lib MODULE=bfm_test \
+        TESTCASE= TOPLEVEL=spi_initiator_smoke_tb TOPLEVEL_LANG=verilog COCOTB_SIM=1 \
+        /usr/bin/vvp -M /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64 -m gpivpi sim_build/sim.vvp
+     -.--ns INFO     cocotb.gpi                                  gpi_embed.c:78   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     cocotb.gpi                                GpiCommon.cpp:104  in gpi_print_registered_impl       VPI registered
+VCD info: dumpfile waveform.vcd opened for output.
+     0.00ns INFO     cocotb.gpi                                  gpi_embed.c:340  in embed_sim_init                  Running on Icarus Verilog version 10.3 (stable)
+     0.00ns INFO     cocotb.gpi                                  gpi_embed.c:341  in embed_sim_init                  Python interpreter initialized and cocotb loaded!
+     0.00ns INFO     cocotb                                      __init__.py:141  in _initialise_testbench           Running tests with cocotb v1.3.3.dev0 from /home/lx/cocotb
+     0.00ns INFO     cocotb                                      __init__.py:159  in _initialise_testbench           Seeding Python random module with 1656836157
+     0.00ns INFO     cocotb.regression                         regression.py:195  in initialise                      Found test bfm_test.runtest
+     0.00ns INFO     cocotb.regression                         regression.py:351  in execute                         Running test 1/1: runtest
+     0.00ns INFO     cocotb.test.runtest.0x7fd2df784730        decorators.py:253  in _advance                        Starting test: "runtest"
+                                                                                                                     Description: None
+1611000000000.00ns INFO     cocotb.regression                         regression.py:295  in handle_result                   Test Passed: runtest
+1611000000000.00ns INFO     cocotb.regression                         regression.py:219  in tear_down                       Passed 1 tests (0 skipped)
+1611000000000.00ns INFO     cocotb.regression                         regression.py:407  in _log_test_summary               **************************************************************************
+                                                                                                                            ** TEST              PASS/FAIL  SIM TIME(NS)  REAL TIME(S)  RATIO(NS/S) **
+                                                                                                                            **************************************************************************
+                                                                                                                            ** bfm_test.runtest    PASS     1611000000000.00          0.00   723915121491322.00  **
+                                                                                                                            **************************************************************************
+                                                                                                                            
+1611000000000.00ns INFO     cocotb.regression                         regression.py:424  in _log_sim_summary                *************************************************************************************
+                                                                                                                            **                                 ERRORS : 0                                      **
+                                                                                                                            *************************************************************************************
+                                                                                                                            **                               SIM TIME : 1611000000000.00 NS                    **
+                                                                                                                            **                              REAL TIME : 0.01 S                                 **
+                                                                                                                            **                        SIM / REAL TIME : 310867857195436.12 NS/S                **
+                                                                                                                            *************************************************************************************
+                                                                                                                            
+1611000000000.00ns INFO     cocotb.regression                         regression.py:229  in tear_down                       Shutting down...
+make[1]: 离开目录“/home/lx/cocotb/tests/test_cases/test_spi_bfm”
+
+
+# 首先通过cocotb.bfmgen自动生成 ===》sim_build/cocotb_bfms.v
+# iverilog仿真器  编译硬件设计相关文件spi_initiator_smoke_tb.sv，cocotb_bfms.v生成 ===》sim_build/sim.vvp	//类似汇编的vvp文件
+	# 编译后会生成被指定的目标可执行文件，但此文件执行后只会在终端上显示仿真时文字信息，需要使用 vvp 工具将其可视化成 .vcd 文件
+	#  -o选项指定输出文件的名称; -D: 定义宏; -s topmodule : 指定要建立的顶层模块; -g2012: 选择支持的verilog语言版本
+# gcc/g++编译器 .c/.cpp文件（share/lib/里的）  ===》build/obj/x86_64 中的各个.o文件（C编译汇编后的目标文件）
+# gcc编译器		.o文件      				   ===》build/libs/x86_64 中的各个.so文件（动态库文件）
+# ln -sf 表示强制建立软链接 ===》simulator.so，gpivpi.vpl，cocotb.vpi
+# 仿真时读入vvp文件，送进vvp虚拟机执行,得到 ===》results.xml
+	# -M path: 将path加入定位VPI模块的路径
+	# -m module: 告诉vvp在执行simulation之前加载指定的module
+	
+
+cocotb/__init__.py
+cocotb/bfmgen.py
+cocotb/bfms.py
+cocotb/decorators.py
+cocotb/regression.py
+
+cocotb/share/include/cocotb_bfm_api.h
+
+cocotb/share/lib/fli/Makefile
+cocotb/share/lib/gpi/GpiBfm.cpp
+cocotb/share/lib/gpi/GpiBfm.h
+cocotb/share/lib/gpi/GpiBfmMsg.cpp
+cocotb/share/lib/gpi/GpiBfmMsg.h
+cocotb/share/lib/gpi/Makefile
+cocotb/share/lib/gpi/cocotb_bfm_api.cpp
+cocotb/share/lib/simulator/simulatormodule.c
+cocotb/share/lib/simulator/simulatormodule.h
+cocotb/share/lib/vpi/Makefile
+cocotb/share/lib/vpi/VpiCbHdl.cpp
+cocotb/share/lib/vpi/VpiImpl.cpp
+cocotb/share/lib/vpi/VpiImpl.h
+cocotb/share/lib/vpi/vpi_bfm_api.cpp
+cocotb/share/lib/vpi/vpi_bfm_api.h
+
+cocotb/share/makefiles/Makefile.inc
+cocotb/share/makefiles/Makefile.sim
+cocotb/share/makefiles/simulators/Makefile.cvc
+cocotb/share/makefiles/simulators/Makefile.icarus
+cocotb/share/makefiles/simulators/Makefile.ius
+cocotb/share/makefiles/simulators/Makefile.questa
+
+setup.py
+
+
+
+
+
+tests/designs/rv_bfm/rv_bfm_top.sv
+tests/test_cases/test_bfms_verilog/Makefile
+tests/test_cases/test_bfms_verilog/bfm_test.py
+tests/test_cases/test_bfms_verilog/rv_bfms/__init__.py
+tests/test_cases/test_bfms_verilog/rv_bfms/hdl/rv_data_in_bfm.v
+tests/test_cases/test_bfms_verilog/rv_bfms/hdl/rv_data_monitor_bfm.v
+tests/test_cases/test_bfms_verilog/rv_bfms/hdl/rv_data_out_bfm.v
+tests/test_cases/test_bfms_verilog/rv_bfms/rv_data_monitor_bfm.py
+tests/test_cases/test_bfms_verilog/rv_bfms/rv_data_monitor_if.py
+tests/test_cases/test_bfms_verilog/rv_bfms/rv_data_out_bfm.py
+
+tests/test_cases/test_compare/Makefile				# deleted
+
+tests/designs/spi_bfm/spi_initiator_smoke_tb.sv
+tests/test_cases/test_spi_bfm/spi_initiator_smoke_tb.sv
+tests/test_cases/test_spi_bfm/Makefile
+tests/test_cases/test_spi_bfm/bfm_test.py
+tests/test_cases/test_spi_bfm/spi_bfms/__init__.py
+tests/test_cases/test_spi_bfm/spi_bfms/hdl/spi_initiator_bfm.v
+tests/test_cases/test_spi_bfm/spi_bfms/spi_initiator_bfm.py
+
+
+
+	

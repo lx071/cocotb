@@ -32,12 +32,14 @@
 # Directory containing the cocotb Python module
 ifeq ($(COCOTB_PY_DIR),)
 export COCOTB_PY_DIR:=$(realpath $(dir $(lastword $(MAKEFILE_LIST)))/../../..)
+# COCOTB_PY_DIR := /home/lx/cocotb
 endif
 
 # Directory containing all support files required to build cocotb-based
 # simulations: Makefile fragments, and the simulator libraries.
 ifeq ($(COCOTB_SHARE_DIR),)
 export COCOTB_SHARE_DIR:=$(realpath $(dir $(lastword $(MAKEFILE_LIST)))/..)
+# COCOTB_SHARE_DIR := /home/lx/cocotb/cocotb/share
 endif
 
 ifeq ($(COCOTB_PY_DIR),$(COCOTB_SHARE_DIR))
@@ -46,28 +48,37 @@ endif
 
 ifeq ($(USER_DIR),)
 export USER_DIR:=$(realpath $(dir $(firstword $(MAKEFILE_LIST))))
+# USER_DIR := /home/lx/cocotb/tests/test_cases/test_spi_bfm
 endif
 
 BUILD_DIR=$(USER_DIR)/build
 export BUILD_DIR
+# BUILD_DIR := /home/lx/cocotb/tests/test_cases/test_spi_bfm/build
 
 ARCH?=$(shell uname -m)
 export ARCH
+# ARCH := x86_64
 
 OS=$(shell uname)
+# OS := Linux
 ifneq (, $(findstring MINGW, $(OS)))
 OS=Msys
 else ifneq (, $(findstring MSYS, $(OS)))
 OS=Msys
 endif
 export OS
+# OS := Linux
 
 include $(COCOTB_SHARE_DIR)/makefiles/Makefile.paths
 include $(COCOTB_SHARE_DIR)/makefiles/Makefile.pylib
 
 export LIB_DIR=$(BUILD_DIR)/libs/$(ARCH)
+# LIB_DIR := /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/libs/x86_64
 export LIB_OBJ_DIR:= $(BUILD_DIR)/obj/$(ARCH)
+# LIB_OBJ_DIR := /home/lx/cocotb/tests/test_cases/test_spi_bfm/build/obj/x86_64
 export INCLUDES := -I$(COCOTB_SHARE_DIR)/include -I$(PYTHON_INCLUDEDIR)
+# INCLUDES := -I/home/lx/cocotb/cocotb/share/include -I/usr/include/python3.8
+
 
 LIB_EXT     := so
 PY_EXT	    := so
@@ -92,7 +103,9 @@ else ifeq ($(OS),Linux)
 GXX_ARGS	+= -Werror -Wcast-qual -Wcast-align -Wwrite-strings \
 			-Wall -Wno-unused-parameter \
 			-fno-common -g -DDEBUG -fpic
+# C++ 编译器 参数
 GCC_ARGS	:= $(GXX_ARGS) -Wstrict-prototypes -Waggregate-return
+# C 编译器 参数
 else
 $(error "Unsupported os " $(OS))
 endif
@@ -116,3 +129,5 @@ else
 $(error "Unsupported top-level language for BFMS: $(TOPLEVEL_LANG)")
 endif
 endif
+
+# COCOTB_BFM_SOURCES := sim_build/cocotb_bfms.v

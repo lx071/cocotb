@@ -1,6 +1,6 @@
 import cocotb
 from cocotb.triggers import RisingEdge, ReadOnly, Lock, Event
-print('=================cocotb.bfm================')
+# print('=================cocotb.bfm================')
 
 
 # 如果当前文件包含在sys.path里面,那么,__file__返回一个相对路径! 如果当前文件不包含在sys.path里面,那么__file__返回一个绝对路径

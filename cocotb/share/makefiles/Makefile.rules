@@ -53,6 +53,7 @@ endif
 GCC_ARGS+= -D$(SIM_DEFINE)
 GXX_ARGS+= -D$(SIM_DEFINE)
 
+
 $(LIB_OBJ_DIR)/%.o: %.c
 	gcc $(GCC_ARGS) -c $(INCLUDES) -o $@ $<
 

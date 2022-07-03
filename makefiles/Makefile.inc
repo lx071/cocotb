@@ -33,4 +33,5 @@ COCOTB_INSTALL_METHOD = srctree
 export COCOTB_INSTALL_METHOD
 
 _NEW_SHARE_DIR := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))/../cocotb/share
+# _NEW_SHARE_DIR := /home/lx/cocotb/makefiles/../cocotb/share
 include $(_NEW_SHARE_DIR)/makefiles/Makefile.inc

@@ -12,7 +12,7 @@ class BfmTest:
         # 从bfm管理器拿到python端的bfm对象，进行驱动
         u_bfm = cocotb.BfmMgr.find_bfm(".*u_bfm")
 
-        print("u_bfm=" + str(u_bfm))
+        # print("u_bfm=" + str(u_bfm))
 
         yield RisingEdge(dut.clk_r)
         # yield FallingEdge(dut.clk_r)

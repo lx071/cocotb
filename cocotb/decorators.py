@@ -490,7 +490,7 @@ class bfm:
     Decorator to identify a BFM type.
     '''
     def __init__(self, hdl):
-        print('@cocotb.bfm(hdl=\t', hdl)
+        # print('@cocotb.bfm(hdl=\t', hdl)
         self.hdl = hdl
 
     def __call__(self, T):
@@ -502,11 +502,11 @@ class bfm:
 class bfm_export():
 
     def __init__(self, *args):
-        print('@cocotb.bfm_export_init')
+        # print('@cocotb.bfm_export_init')
         self.signature = args
 
     def __call__(self, m):
-        print('@cocotb.bfm_export_call')
+        # print('@cocotb.bfm_export_call')
         # 将被装饰的方法放进全局列表export_info_l中
         cocotb.bfms.register_bfm_export_info(
             cocotb.bfms.BfmMethodInfo(m, self.signature))
@@ -519,11 +519,11 @@ class bfm_import():
     '''
 
     def __init__(self, *args):
-        print('@cocotb.bfm_import_init')
+        # print('@cocotb.bfm_import_init')
         self.signature = args
 
     def __call__(self, m):
-        print('@cocotb.bfm_import_call')
+        # print('@cocotb.bfm_import_call')
         info = cocotb.bfms.BfmMethodInfo(m, self.signature)
         # 将被装饰的方法放进全局列表import_info_l中
         cocotb.bfms.register_bfm_import_info(info)
